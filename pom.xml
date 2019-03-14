@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>gov.cms</groupId>
   <artifactId>FQHC-Pricer</artifactId>
-  <version>0.0.10-SNAPSHOT</version>
+  <version>0.0.11-SNAPSHOT</version>
   <packaging>kjar</packaging>
   <name>FQHC-Pricer</name>
   <description></description>
