@@ -2,7 +2,7 @@ package gov.cms.fqhc_pricer;
 
 import java.lang.Number;
 
-rule "Payment No MA Plan covered charges more than limit" extends "Service Date"
+rule "Payment No MA Plan covered charges more than limit" extends "Service Date is Recent"
 	dialect "mvel"
 	when
 		NotMAPlan( )
