@@ -7,10 +7,10 @@ rule "Set Payment" extends "Service Date"
 	when
 		NotMAPlan( )
 		$lh : LineCalculationHelper( $AF : adjFactor, $baserate : baserate, $l : line)
-		$line : Line( $coveredcharges : coveredCharges < ( $lh.adjFactor * $lh.baserate ) , line == ( $l ) )
+		$line : Line( $coveredcharges : coveredCharges < ( $lh.adjFactor * $lh.baserate ) , line == ( $lh.line ) )
 	then
 		modify( $line ) {
 				setLinePayment( $coveredcharges )
 		}
-		System.out.println("===> FQHC-Pricing: firing rule "+drools.getRule().getName()+" for line # "+$l);
+		System.out.println("===> FQHC-Pricing: firing rule "+drools.getRule().getName()+" for line # "+$line.line);
 end
