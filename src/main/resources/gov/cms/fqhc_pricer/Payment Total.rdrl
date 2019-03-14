@@ -1,0 +1,21 @@
+package gov.cms.fqhc_pricer;
+
+import java.lang.Number;
+
+rule "Payment Total" extends "Service Date is Recent"
+	dialect "mvel"
+	when
+		$claim : Claim( )
+		$totalPayment : Double( ) from accumulate ( Line( $linePayment : linePayment),
+			sum($linePayment)) 
+		$totalReimbursement : Double( ) from accumulate ( Line( $lineReimbursement : lineMedicareReimbursement),
+			sum($lineReimbursement)) 
+		$totalAddon : Double( ) from accumulate ( Line( $lineAddon : lineAddonPayment),
+			sum($lineAddon)) 
+	then
+		modify( $claim ) {
+				setTotalClaimPayment( $totalPayment ), 
+				setTotalMedicareReimbursement( $totalReimbursement ), 
+				setTotalClaimCoinsurance( $totalAddon )
+		}
+end
