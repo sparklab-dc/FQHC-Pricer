@@ -8,5 +8,11 @@ rule "Payment No MA Plan Total" extends "Service Date is Recent"
 		$claim : Claim( )
 		$totalPayment: Double() from accumulate( Line( $linePayment: linePayment ), sum($linePayment) )
 		$totalReimbursement: Double() from accumulate( Line( $lineReimbursement: lineMedicareReimbursement ), sum($lineReimbursement) )
+		$totalAddon: Double() from accumulate( Line( $lineAddon: lineAddonPayment ), sum($lineAddon) )
 	then
+		modify( $claim ) {
+				setTotalClaimPayment( $totalPayment ), 
+				setTotalMedicareReimbursement( $totalReimbursement ), 
+				setTotalClaimCoinsurance( $totalAddon )
+		}
 end
