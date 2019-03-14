@@ -6,8 +6,8 @@ rule "Set Payment" extends "Service Date"
 	dialect "mvel"
 	when
 		NotMAPlan( )
-		LineCalculationHelper( $AF : adjFactor, $baserate : baserate, $l : line)
-		$line : Line( $coveredcharges : coveredCharges < ( 1000 ) , line == ( $l ) )
+		$lh : LineCalculationHelper( $AF : adjFactor, $baserate : baserate, $l : line)
+		$line : Line( $coveredcharges : coveredCharges < ( $lh.adjFactor * $lh.baserate ) , line == ( $l ) )
 	then
 		modify( $line ) {
 				setLinePayment( $coveredcharges )
