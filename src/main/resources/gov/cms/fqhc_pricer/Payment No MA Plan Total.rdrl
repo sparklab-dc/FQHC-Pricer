@@ -2,8 +2,11 @@ package gov.cms.fqhc_pricer;
 
 import java.lang.Number;
 
-rule "Payment No MA Plan Total"
+rule "Payment No MA Plan Total" extends "Service Date is Recent"
 	dialect "mvel"
 	when
+		$claim : Claim( )
+		$totalPayment: Double() from accumulate( Line( $linePayment: linePayment ), sum($linePayment) )
+		$totalReimbursement: Double() from accumulate( Line( $lineReimbursement: lineMedicareReimbursement ), sum($lineReimbursement) )
 	then
 end
