@@ -5,7 +5,7 @@ import java.lang.Number;
 rule "The Plan Is Not An MA Plan" extends "Service Date is Recent"
 	dialect "mvel"
 	when
-		Claim( maPlanAmount == null || maPlanAmount == 0.0 )
+		Claim( maPlanAmount == 0.0 )
 		Line( revenueCode != "0519" )
 	then
 		insertLogical( new NotMAPlan() );
