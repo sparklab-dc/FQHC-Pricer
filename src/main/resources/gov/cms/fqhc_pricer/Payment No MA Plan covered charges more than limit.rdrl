@@ -7,10 +7,10 @@ rule "Payment No MA Plan covered charges more than limit" extends "Service Date"
 	when
 		NotMAPlan( )
 		$lh : LineCalculationHelper( $AF : adjFactor != null , $baserate : baserate != null , $l : line != null )
-		$line : Line( $coveredcharges : coveredCharges < ( $AF* $baserate ) , line == ( $l ) )
+		$line : Line( $coveredcharges : coveredCharges >= ( $AF* $baserate ) , line == ( $l ) )
 	then
 		modify( $line ) {
-				setLinePayment( $coveredcharges )
+				setLinePayment( $AF* $baserate )
 		}
 		System.out.println("===> FQHC-Pricing: firing rule "+drools.getRule().getName()+" for line # "+$l);
 end
