@@ -1,6 +1,7 @@
 package gov.cms.fqhc_pricer;
 
 import java.lang.Number;
+import java.lang.Double;
 
 rule "Payment Total" extends "Service Date is Recent"
 	dialect "mvel"
