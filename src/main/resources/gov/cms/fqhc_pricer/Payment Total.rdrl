@@ -5,6 +5,7 @@ import java.lang.Double;
 
 rule "Payment Total" extends "Service Date is Recent"
 	dialect "mvel"
+	enabled false
 	when
 		$claim : Claim( )
 		$totalPayment : Double( ) from accumulate ( Line( $linePayment : linePayment),
