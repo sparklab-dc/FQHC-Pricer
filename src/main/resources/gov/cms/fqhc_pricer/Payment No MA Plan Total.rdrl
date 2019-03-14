@@ -1,0 +1,9 @@
+package gov.cms.fqhc_pricer;
+
+import java.lang.Number;
+
+rule "Payment No MA Plan Total"
+	dialect "mvel"
+	when
+	then
+end
