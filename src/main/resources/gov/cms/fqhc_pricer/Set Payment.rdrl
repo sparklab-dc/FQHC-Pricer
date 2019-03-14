@@ -1,0 +1,16 @@
+package gov.cms.fqhc_pricer;
+
+import java.lang.Number;
+
+rule "Set Payment" extends "Service Date"
+	dialect "mvel"
+	when
+		NotMAPlan( )
+		LineCalculationHelper( $AF : adjFactor, $baserate : baserate, $l : line)
+		$line : Line( $coveredcharges : coveredCharges < ( $AF*$baserate ) , line == ( $l ) )
+	then
+		modify( $line ) {
+				setLinePayment( $coveredcharges )
+		}
+		System.out.println("===> FQHC-Pricing: firing rule "+drools.getRule().getName()+" for line # "+$l);
+end

@@ -1,0 +1,13 @@
+package gov.cms.fqhc_pricer;
+
+import java.lang.Number;
+
+rule "The Plan Is Not An MA Plan" extends "Service Date"
+	dialect "mvel"
+	when
+		Claim( maPlanAmount == 0.0 )
+		Line( revenueCode != "0519" )
+	then
+		insertLogical( new NotMAPlan() );
+		System.out.println("===> FQHC-Pricing: firing rule "+drools.getRule().getName());
+end
