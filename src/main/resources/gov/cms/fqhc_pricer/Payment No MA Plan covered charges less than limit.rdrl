@@ -8,7 +8,7 @@ rule "Payment No MA Plan covered charges less than limit" extends "Service Date 
 	when
 		NotMAPlan( )
 		$lh : LineCalculationHelper( $AF : adjFactor != null , $baserate : baserate != null , $l : line != null )
-		$line : Line( $coveredcharges : coveredCharges < ( $AF* $baserate ) , line == ( $l ) )
+		$line : Line( $coveredcharges : coveredCharges < ( $AF* $baserate ) , line == ( $l ) , compositeAdjFlag == "01" )
 	then
 		modify( $line ) {
 				setLinePayment( $coveredcharges )
