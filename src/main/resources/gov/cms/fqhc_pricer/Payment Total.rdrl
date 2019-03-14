@@ -9,11 +9,11 @@ rule "Payment Total" extends "Service Date is Recent"
 	salience 0
 	when
 		$claim : Claim( )
-		$totalPayment : Double( ) from accumulate ( Line( $linePayment : linePayment),
+		$totalPayment : Double( ) from accumulate ( Line( $linePayment : linePayment != null ),
 			sum($linePayment)) 
-		$totalReimbursement : Double( ) from accumulate ( Line( $lineReimbursement : lineMedicareReimbursement),
+		$totalReimbursement : Double( ) from accumulate ( Line( $lineReimbursement : lineMedicareReimbursement != null ),
 			sum($lineReimbursement)) 
-		$totalAddon : Double( ) from accumulate ( Line( $lineAddon : lineAddonPayment),
+		$totalAddon : Double( ) from accumulate ( Line( $lineAddon : lineAddonPayment != null ),
 			sum($lineAddon)) 
 	then
 		modify( $claim ) {
