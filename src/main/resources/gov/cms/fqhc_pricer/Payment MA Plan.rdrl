@@ -6,6 +6,7 @@ rule "Payment MA Plan" extends "Service Date is Recent"
 	dialect "mvel"
 	salience 6
 	when
+		not (StopProcessing( )) 
 		NotMAPlan( )
 		$lh : LineCalculationHelper( $AF : adjFactor != null , $baserate : baserate != null , $l : line != null )
 		$line : Line( line == ( $l ) )
