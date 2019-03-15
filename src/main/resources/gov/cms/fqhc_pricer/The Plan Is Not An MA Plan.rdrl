@@ -6,9 +6,9 @@ rule "The Plan Is Not An MA Plan" extends "Service Date is Recent"
 	dialect "mvel"
 	salience 8
 	when
-		Claim( maPlanAmount == 0.0 )
-		Line( revenueCode != "0519" )
+		Claim( maPlanAmount > 0.0 )
+		Line( revenueCode == "0519" )
 	then
-		insertLogical( new NotMAPlan() );
+		insertLogical( new MAPlan() );
 		System.out.println("===> FQHC-Pricing: firing rule "+drools.getRule().getName());
 end
