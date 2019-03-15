@@ -6,7 +6,7 @@ rule "Payment Indicator 14" extends "Service Date is Recent"
 	dialect "mvel"
 	salience 7
 	when
-		$lh : LineCalculationHelper( $l : line != null , $gtbaserate : gftbaserate)
+		$lh : LineCalculationHelper( $l : line != null , $gtbaserate : gftbaserate != null )
 		$line : Line( line == ( $l ) , serviceDate < "01-Jan-2016" )
 		$claim : Claim( )
 	then
