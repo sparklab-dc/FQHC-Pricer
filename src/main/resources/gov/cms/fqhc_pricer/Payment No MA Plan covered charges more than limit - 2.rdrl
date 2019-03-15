@@ -1,0 +1,24 @@
+package gov.cms.fqhc_pricer;
+
+import java.lang.Number;
+
+rule "Payment No MA Plan covered charges more than limit - 2" extends "Service Date is Recent"
+	dialect "mvel"
+	salience 7
+	when
+		NotMAPlan( )
+		$lh : LineCalculationHelper( $AF : adjFactor != null , $baserate : baserate != null , $l : line != null )
+		$line : Line( $coveredcharges : coveredCharges < ( $AF* $baserate ) , line == ( $l ) , compositeAdjFlag == "02" , packagingFlag == "6" , paymentIndicator != "12" , packagingFlag != "5" )
+		$claim : Claim( )
+	then
+		modify( $line ) {
+				setLinePayment( $coveredcharges ), 
+				setLineCoinsurance( 0.0 ), 
+				setLineReturnCode( "02" ), 
+				setLineMedicareReimbursement( $coveredcharges )
+		}
+		modify( $claim ) {
+				setClaimReturnCode( "01" )
+		}
+		System.out.println("===> FQHC-Pricing: firing rule "+drools.getRule().getName()+" for line # "+$l);
+end
