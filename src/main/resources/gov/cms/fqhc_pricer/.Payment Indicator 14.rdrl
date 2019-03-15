@@ -1,0 +1,20 @@
+<org.uberfire.java.nio.base.Properties serialization="custom">
+  <unserializable-parents/>
+  <map>
+    <default>
+      <loadFactor>0.75</loadFactor>
+      <threshold>12</threshold>
+    </default>
+    <int>16</int>
+    <int>1</int>
+    <string>dcore.description[0]</string>
+    <string>If (Payment Indicator = &apos;14&apos;) and   
+    If (Service from date on detailed record &lt; &apos;20160101&apos;)
+   MOVE 02 TO Claim level return code (Claim Return Code) and stop processing 
+Else
+   Compute Line payment amount from the GFTF reference table (BASEGFTF) by
+   effective date and select value on the latest record. Set the Line Add-on Payment to “1” (Line Add-on payment is the field on the output record). For this highlighted condition, line co-insurance amount is 20% of line payment amount and Line Medicare Reimbursement is line payment-line co-insurance
+
+For this highlighted condition, move 05 to the line return code and 01 to the claim return code (please refer to the return codes at the end of this document)</string>
+  </map>
+</org.uberfire.java.nio.base.Properties>
