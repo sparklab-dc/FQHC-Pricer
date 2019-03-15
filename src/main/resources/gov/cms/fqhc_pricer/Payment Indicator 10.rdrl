@@ -6,15 +6,18 @@ rule "Payment Indicator 10" extends "Service Date is Recent"
 	dialect "mvel"
 	salience 7
 	when
-		$lh : LineCalculationHelper( $l : line != null , $gtbaserate : gftbaserate)
+		$lh : LineCalculationHelper( $l : line != null , $baserate : baserate != null , $AF : adjFactor != null )
 		$line : Line( line == ( $l ) , serviceDate < "01-Jan-2016" )
 		$claim : Claim( )
 	then
 		modify( $line ) {
-				setLinePayment( $gtbaserate )
+				setLinePayment( $AF*$baserate ), 
+				setLineCoinsurance( 0.2*$AF*$baserate ), 
+				setLineMedicareReimbursement( 0.8*$AF*$baserate ), 
+				setLineReturnCode( "01" )
 		}
 		modify( $claim ) {
-				setClaimReturnCode( "02" )
+				setClaimReturnCode( "01" )
 		}
 		System.out.println("===> FQHC-Pricing: firing rule "+drools.getRule().getName()+" for line # "+$l);
 end
