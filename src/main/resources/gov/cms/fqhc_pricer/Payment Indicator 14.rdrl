@@ -11,7 +11,9 @@ rule "Payment Indicator 14" extends "Service Date is Recent"
 		$claim : Claim( )
 	then
 		modify( $line ) {
-				setLinePayment( $gtbaserate )
+				setLinePayment( $gtbaserate ), 
+				setLineCoinsurance( 0.2*$gtbaserate ), 
+				setLineMedicareReimbursement( 0.8*$gtbaserate )
 		}
 		modify( $claim ) {
 				setClaimReturnCode( "02" )
