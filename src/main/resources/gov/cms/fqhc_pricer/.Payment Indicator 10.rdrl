@@ -1,0 +1,20 @@
+<org.uberfire.java.nio.base.Properties serialization="custom">
+  <unserializable-parents/>
+  <map>
+    <default>
+      <loadFactor>0.75</loadFactor>
+      <threshold>12</threshold>
+    </default>
+    <int>16</int>
+    <int>1</int>
+    <string>dcore.description[0]</string>
+    <string>If Payment Indicator = &apos;10&apos;
+Compute line payment amount from the BASE PYMT Rate table (BASEBASE) by effective date (Line Payment = Base-PMT-RATE * GAF)
+
+GAF Values can be found in the FQHC GAFS reference table. In the input record, look for service from date, carrier and locality to get the GAF value 
+
+For this condition, line co-insurance amount is 20% of line payment amount and Line Medicare Reimbursement is line payment-line co-insurance
+
+For this condition, move 01 to the line return code and 01 to the claim return code (please refer to the return codes at the end of this document)</string>
+  </map>
+</org.uberfire.java.nio.base.Properties>
