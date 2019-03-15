@@ -13,7 +13,8 @@ rule "Payment No MA Plan covered charges more than limit - 1" extends "Service D
 		modify( $line ) {
 				setLinePayment( $AF* $baserate ), 
 				setLineCoinsurance( 0.2*$AF* $baserate ), 
-				setLineMedicareReimbursement( 0.8*$AF* $baserate )
+				setLineMedicareReimbursement( 0.8*$AF* $baserate ), 
+				setLineReturnCode( "01" )
 		}
 		System.out.println("===> FQHC-Pricing: firing rule "+drools.getRule().getName()+" for line # "+$l);
 end
