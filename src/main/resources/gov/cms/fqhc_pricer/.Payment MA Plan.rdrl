@@ -1,0 +1,22 @@
+<org.uberfire.java.nio.base.Properties serialization="custom">
+  <unserializable-parents/>
+  <map>
+    <default>
+      <loadFactor>0.75</loadFactor>
+      <threshold>12</threshold>
+    </default>
+    <int>16</int>
+    <int>1</int>
+    <string>dcore.description[0]</string>
+    <string>If MA Plan Amount on header record &gt; 0  and Revenue Code = &apos;0519&apos;  and MA plan amount &gt; 0 then Compute
+Line Payment = (Base-PMT-RATE * GAF) - MA Plan Amount
+Move &apos;06&apos; to return code and 01 to the claim return code
+
+Condition to compute Line reimbursement amount:
+For MA plan claim line or revenue code on header = &apos;0519&apos;
+Move Line Payment amount to Line reimbursement amount
+Condition to compute Line co-insurance:
+For MA plan claim line or revenue code on header = &apos;0519&apos;
+Set value of 0&apos; to Line Coinsurance</string>
+  </map>
+</org.uberfire.java.nio.base.Properties>
