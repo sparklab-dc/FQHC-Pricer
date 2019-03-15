@@ -1,0 +1,23 @@
+package gov.cms.fqhc_pricer;
+
+import java.lang.Number;
+
+rule "Payment Indicator 12" extends "Service Date is Recent"
+	dialect "mvel"
+	salience 7
+	when
+		$lh : LineCalculationHelper( $l : line != null , $baserate : baserate != null , $AF : adjFactor != null )
+		$line : Line( line == ( $l ) , serviceDate < "01-Jan-2016" )
+		$claim : Claim( )
+	then
+		modify( $line ) {
+				setLinePayment( $AF*$baserate ), 
+				setLineCoinsurance( 0.2*$AF*$baserate ), 
+				setLineMedicareReimbursement( 0.8*$AF*$baserate ), 
+				setLineReturnCode( "01" )
+		}
+		modify( $claim ) {
+				setClaimReturnCode( "01" )
+		}
+		System.out.println("===> FQHC-Pricing: firing rule "+drools.getRule().getName()+" for line # "+$l);
+end
