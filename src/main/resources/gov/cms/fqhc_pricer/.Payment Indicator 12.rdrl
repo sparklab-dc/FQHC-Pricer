@@ -1,0 +1,22 @@
+<org.uberfire.java.nio.base.Properties serialization="custom">
+  <unserializable-parents/>
+  <map>
+    <default>
+      <loadFactor>0.75</loadFactor>
+      <threshold>12</threshold>
+    </default>
+    <int>16</int>
+    <int>1</int>
+    <string>dcore.description[0]</string>
+    <string>If Payment Indicator = &apos;12&apos;
+Line Payment = (Base Rate * Adj Factor) + (Base Rate * Adj Factor) * Addon Factor)
+
+Adj Factor or GAF can be found from the FQHC GAFS reference table. In the input record, look for service from date, carrier and locality to get the GAF value.
+
+Add-ON Factor can be found from the table above for the corresponding service from year 
+
+For this condition, line co-insurance amount is 20% of line payment amount and Line Medicare Reimbursement is line payment-line co-insurance
+
+For this condition, move 05 to the line return code and 01 to the claim return code (please refer to the return codes at the end of this document)</string>
+  </map>
+</org.uberfire.java.nio.base.Properties>
