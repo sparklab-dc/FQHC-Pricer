@@ -8,13 +8,14 @@ rule "Payment MA Plan" extends "Service Date is Recent"
 	when
 		NotMAPlan( )
 		$lh : LineCalculationHelper( $AF : adjFactor != null , $baserate : baserate != null , $l : line != null )
-		$line : Line( $coveredcharges : coveredCharges < ( $AF* $baserate ) , line == ( $l ) , compositeAdjFlag == "01" , packagingFlag != "6" )
-		$claim : Claim( )
+		$line : Line( line == ( $l ) )
+		$claim : Claim( $maPlanAmount : maPlanAmount > 0.0 )
 	then
 		modify( $line ) {
-				setLinePayment( $coveredcharges ), 
-				setLineCoinsurance( 0.2*$coveredcharges ), 
-				setLineReturnCode( "02" )
+				setLinePayment( $AF* $baserate - $maPlanAmount ), 
+				setLineCoinsurance( 0.0 ), 
+				setLineReturnCode( "06" ), 
+				setLineMedicareReimbursement( $AF* $baserate - $maPlanAmount )
 		}
 		modify( $claim ) {
 				setClaimReturnCode( "01" )
