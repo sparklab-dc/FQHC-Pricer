@@ -16,5 +16,6 @@ rule "Payment Indicator 14" extends "Service Date is Recent"
 		modify( $claim ) {
 				setClaimReturnCode( "02" )
 		}
+		insertLogical( new StopProcessing() );
 		System.out.println("===> FQHC-Pricing: firing rule "+drools.getRule().getName()+" for line # "+$l);
 end
