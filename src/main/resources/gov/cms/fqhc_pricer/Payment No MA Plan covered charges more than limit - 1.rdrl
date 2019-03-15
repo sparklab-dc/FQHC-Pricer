@@ -12,9 +12,9 @@ rule "Payment No MA Plan covered charges more than limit - 1" extends "Service D
 		$claim : Claim( )
 	then
 		modify( $line ) {
-				setLinePayment( $AF* $baserate ), 
-				setLineCoinsurance( 0.2*$AF* $baserate ), 
-				setLineMedicareReimbursement( 0.8*$AF* $baserate ), 
+				setLinePayment( $baserate*$AF ), 
+				setLineCoinsurance( 0.2*$baserate*$AF ), 
+				setLineMedicareReimbursement( 0.8*$baserate*$AF ), 
 				setLineReturnCode( "01" )
 		}
 		modify( $claim ) {
