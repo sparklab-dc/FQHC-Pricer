@@ -1,0 +1,18 @@
+<org.uberfire.java.nio.base.Properties serialization="custom">
+  <unserializable-parents/>
+  <map>
+    <default>
+      <loadFactor>0.75</loadFactor>
+      <threshold>12</threshold>
+    </default>
+    <int>16</int>
+    <int>1</int>
+    <string>dcore.description[0]</string>
+    <string>else 
+Move (Base rate * Adj Factor) to Line payment amount
+For this condition, For non MA Claim plan (if Packaging flag =  &apos;6&apos;) and (PYMT-IND &lt;&gt; &apos;12&apos; and (Packaging flag &lt;&gt; &apos;5&apos;) then 
+Set value of ‘0&apos; to Line Coinsurance and Line Medicare Reimbursement is line payment-line co-insurance)
+
+Set claim return code to 01 and line return code to 01</string>
+  </map>
+</org.uberfire.java.nio.base.Properties>
