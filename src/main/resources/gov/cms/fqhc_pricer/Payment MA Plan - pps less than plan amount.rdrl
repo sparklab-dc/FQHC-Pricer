@@ -10,7 +10,7 @@ rule "Payment MA Plan - pps less than plan amount" extends "Service Date is Rece
 		exists (MAPlan( )) 
 		$claim : Claim( $maPlanAmnt : maPlanAmount != null )
 		$lh : LineCalculationHelper( $l : line != null , $ppsAmnt : roundPpsAmount < ( $maPlanAmnt ) )
-		$line : Line( line == ( $l ) , paymentIndicator == "07" )
+		$line : Line( line == ( $l ) , paymentIndicator == "13" )
 	then
 		modify( $line ) {
 				setLinePayment( 0.0 ), 
