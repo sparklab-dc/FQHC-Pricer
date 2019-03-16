@@ -1,0 +1,18 @@
+<org.uberfire.java.nio.base.Properties serialization="custom">
+  <unserializable-parents/>
+  <map>
+    <default>
+      <loadFactor>0.75</loadFactor>
+      <threshold>12</threshold>
+    </default>
+    <int>16</int>
+    <int>1</int>
+    <string>dcore.description[0]</string>
+    <string>If pps-amount &gt; MA plan amount in the header
+   Compute Line Payment = pps-amount - MA Plan Amount
+   Move &apos;06&apos; to return code
+Move Line Payment amount to Line reimbursement amount
+Set value of ‘0&apos; to Line Coinsurance 
+Line Add-on Payment is 0</string>
+  </map>
+</org.uberfire.java.nio.base.Properties>

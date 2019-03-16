@@ -17,6 +17,8 @@ public class LineCalculationHelper implements java.io.Serializable {
 
 	private java.lang.Integer line;
 
+	private java.lang.Double roundPpsAmount;
+
 	public LineCalculationHelper() {
 	}
 
@@ -60,14 +62,24 @@ public class LineCalculationHelper implements java.io.Serializable {
 		this.line = line;
 	}
 
+	public java.lang.Double getRoundPpsAmount() {
+		return this.roundPpsAmount;
+	}
+
+	public void setRoundPpsAmount(java.lang.Double roundPpsAmount) {
+		this.roundPpsAmount = roundPpsAmount;
+	}
+
 	public LineCalculationHelper(java.lang.Double baserate,
 			java.lang.Double addonfactor, java.lang.Double gftbaserate,
-			java.lang.Double adjFactor, java.lang.Integer line) {
+			java.lang.Double adjFactor, java.lang.Integer line,
+			java.lang.Double roundPpsAmount) {
 		this.baserate = baserate;
 		this.addonfactor = addonfactor;
 		this.gftbaserate = gftbaserate;
 		this.adjFactor = adjFactor;
 		this.line = line;
+		this.roundPpsAmount = roundPpsAmount;
 	}
 
 }

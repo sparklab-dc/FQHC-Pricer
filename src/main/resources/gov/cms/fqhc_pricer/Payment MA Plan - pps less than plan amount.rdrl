@@ -1,0 +1,26 @@
+package gov.cms.fqhc_pricer;
+
+import java.lang.Number;
+
+rule "Payment MA Plan - pps less than plan amount" extends "Service Date is Recent"
+	dialect "mvel"
+	salience 6
+	when
+		not (StopProcessing( )) 
+		exists (MAPlan( )) 
+		$claim : Claim( $maPlanAmnt : maPlanAmount != null )
+		$lh : LineCalculationHelper( $l : line != null , $ppsAmnt : roundPpsAmount < ( $maPlanAmnt ) )
+		$line : Line( line == ( $l ) , paymentIndicator == "07" )
+	then
+		modify( $line ) {
+				setLinePayment( 0.0 ), 
+				setLineCoinsurance( 0.0 ), 
+				setLineMedicareReimbursement( 0.0 ), 
+				setLineAddonPayment( $ppsAmnt ), 
+				setLineReturnCode( "07" )
+		}
+		modify( $claim ) {
+				setClaimReturnCode( "01" )
+		}
+		System.out.println("===> FQHC-Pricing: firing rule "+drools.getRule().getName()+" for line # "+$l);
+end
