@@ -1,0 +1,15 @@
+<org.uberfire.java.nio.base.Properties serialization="custom">
+  <unserializable-parents/>
+  <map>
+    <default>
+      <loadFactor>0.75</loadFactor>
+      <threshold>12</threshold>
+    </default>
+    <int>16</int>
+    <int>1</int>
+    <string>dcore.description[0]</string>
+    <string>Total Claim Payment amount by adding the values in the line payment value field
+Total Medical Reimbursement by adding the values in the line Medicare reimbursement field
+Total Claim co-insurance by adding the values in the Line Add on Payment</string>
+  </map>
+</org.uberfire.java.nio.base.Properties>
